@@ -11,7 +11,7 @@ def home():
 def add():
     return 'Add a new Todo.'
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:root@35.230.141.149/to_do"
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql:///to_do" #enter info
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
