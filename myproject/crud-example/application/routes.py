@@ -33,3 +33,8 @@ def delete_first():
     db.session.delete(game)
     db.session.commit()
     return "First entry has been deleted!"
+
+@app.route('/count')
+def count():
+    count = Games.query.count()
+    return str(count)
