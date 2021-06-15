@@ -1,0 +1,10 @@
+{% extends "layout.html" %} 
+{% block body_content %} 
+{% for todo in to_do %} 
+{% if todo.completed == False %}
+<p>{{todo.title}} is not complete</p>
+{% else %}
+<p>{{todo.title}} is complete, &#9989</p>
+{% endif %} 
+{% endfor %} 
+{% endblock body_content %} 
