@@ -7,12 +7,24 @@ def home():
     all_to_do = To_do.query.all()
     return render_template('list.html', to_do = all_to_do)
 
-@app.route('/add')
+@app.route('/add', methods=['GET', 'POST'])
 def add():
-    new_to_do = To_do(title="Clean room", description="Put away clothes and vacuum the floor", completed=False)
-    db.session.add(new_to_do)
-    db.session.commit()
-    return 'Added a new Todo.'
+    error = ""
+    form = entryForm()
+
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            title = form.title.data 
+            description = form.description.data
+            completed = form.completed.data
+            new_to_do = To_do(title=title, description=description, completed=completed)
+            db.session.add(new_to_do)
+            db.session.commit()
+            return f'Added a new To-do.'
+        else:
+            return render_template('entry.html', form=form, title="", description="")
+    else:
+        return render_template('home.html', form=form)
 
 @app.route('/complete/<tdid>')
 def completed(tdid):
