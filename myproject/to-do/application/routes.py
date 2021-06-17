@@ -16,14 +16,14 @@ def add():
 
 @app.route('/complete/<tdid>')
 def completed(tdid):
-    to_do = To_do(id = tdid)
-    to_do.completed = "1"
+    to_do = To_do.query.get(tdid)
+    to_do.completed = True
     db.session.commit()
     return 'To-do updated!'
 
 @app.route('/incomplete/<tdid>')
 def incomplete(tdid):
-    to_do = To_do(id = tdid)
-    to_do.completed = "0"
+    to_do = To_do.query.get(tdid)
+    to_do.completed = False
     db.session.commit()
     return 'To-do updated!'
