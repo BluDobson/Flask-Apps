@@ -1,6 +1,7 @@
 from application import app, db
 from application.models import To_do
-from flask import Flask, render_template
+from application.forms import entryForm
+from flask import Flask, render_template, request
 
 @app.route('/')
 def home():
@@ -24,7 +25,7 @@ def add():
         else:
             return render_template('entry.html', form=form, title="", description="")
     else:
-        return render_template('home.html', form=form)
+        return render_template('entry.html', form=form)
 
 @app.route('/complete/<tdid>')
 def completed(tdid):

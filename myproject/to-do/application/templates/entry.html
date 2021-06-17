@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>Enter a new to-do!</title>
+    </head>
+    <body>
+        <div class='form'>
+            <form method='POST' action=''>
+                {{ form.hidden_tag() }}
+                {{ form.title.label }}{{ form.title }}
+                <br>
+                {{ form.description.label }}{{ form.description }}
+                <br>
+                {{ form.completed.label }}{{ form.completed }}
+                {% if form.title.errors %}
+                <div class='error'>
+                    {% for error in form.title.errors %} 
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %} 
+                {% if form.description.errors %} 
+                <div class='error'>
+                    {% for error in form.description.errors %} 
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %} 
+                <br>
+                {{ form.submit }}
+            </form>
+        </div>
+    </body>
+</html>
